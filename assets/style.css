@@ -1,5 +1,5 @@
 main {
-    display:flex;
+    display: flex;
 }
 
 h1 {
@@ -12,11 +12,23 @@ h1 {
 h2 {
     background-color: deepskyblue;
     padding: 10px;
-    margin: 8px;    
+    margin: 8px;
+}
+
+h3, h4 {
+    margin-left: 5px;
+}
+
+p {
+    margin-left: 5px;
 }
 
 .search {
     margin: 8px;
+}
+
+#searchBtn {
+    margin-top: 8px;
 }
 
 #search-border {
@@ -28,6 +40,7 @@ h2 {
 }
 
 .cards {
-    width: 35%;
+    width: 40%;
     border: 1px solid black;
+    margin: 5px;
 }
