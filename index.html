@@ -29,20 +29,19 @@
 
             <div class="list-group">
                 <p> Search history: </p>
-                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                    history
+                <a href="#" id="history" class="list-group-item list-group-item-action active" aria-current="true">
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">history</a>
-                <a href="#" class="list-group-item list-group-item-action">history</a>
+                <a href="#" class="list-group-item list-group-item-action history">history</a>
+                <a href="#" class="list-group-item list-group-item-action history">history</a>
             </div>
         </section>
 
         <section class="col-md-8">
             <div id="current-day">
                 <h3 id="result"></h3> <h4 id="currentDay"></h4><span id="icon"></span>
-                <p>Temp: </p>
-                <p>Wind: </p>
-                <p>Humidity: </p>
+                <p>Temp(F): <span class="not-bold" id="currentTemp"></span></p> 
+                <p>Wind (mph): <span class="not-bold" id="currentWind"></span></p> 
+                <p>Humidity %: <span class="not-bold" id="currentHumidity"></span></p> 
             </div>
 
             <div>
@@ -51,9 +50,9 @@
             <div class="hstack">
                 <div class="cards">
                     <p>Future Date<span id="icon"></span></p>
-                    <p>Temp: </p>
-                    <p>Wind: </p>
-                    <p>Humidity: </p>
+                    <p>Temp(F): <span class="not-bold" id="oneTemp"></span></p> 
+                    <p>Wind (mph): <span class="not-bold" id="oneWind"></span></p> 
+                    <p>Humidity %: <span class="not-bold" id="oneHumidity"></span></p> 
                 </div>
 
                 <div class="cards">

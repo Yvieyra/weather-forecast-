@@ -21,6 +21,11 @@ h3, h4 {
 
 p {
     margin-left: 5px;
+    font-weight: bold;
+}
+
+.not-bold {
+    font-weight: 400;
 }
 
 .search {
