@@ -56,7 +56,7 @@ function userInput() { //function selects the city searched and enters the city 
   var city = searchBar.value;
   getWeather(city)
   result.textContent = city;
-  localStorage.setItem("city", city);
+  localStorage.setItem("city", JSON.stringify(city));
   var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
   fetch(forecastURL)
     .then(function (response) {
@@ -101,14 +101,21 @@ function userInput() { //function selects the city searched and enters the city 
 
 searchBtn.addEventListener("click", userInput);
 
+// iconURL = http://openweathermap.org/img/wn/
 
-
-function getHistory() {
-var historyOne=localStorage.getItem("city");
-searchHistory.textContent = historyOne;
-console.log(historyOne);
-  
+function getHistory(city) {
+// var historyOne=localStorage.getItem("city");
+// searchHistory.textContent = historyOne;
+// console.log(historyOne);
+localStorage.getItem("city");
+if (city) {
+  city = JSON.parse(city);
+} else {
+  city = [];
+  console.log(city);
 }
+return city;
+};
 
 
 
