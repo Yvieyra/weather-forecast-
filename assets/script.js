@@ -19,9 +19,21 @@ var apiKey = "1c9903c287a36ef7e14ef5008002dd64";
 
 
 $(function () {
-  var today = dayjs();
-  $('#currentDay').text(today.format('(MMM D, YYYY)'));
+  var today = dayjs(); //gets current date
+  $('#currentDay').text(today.format('(MMM D, YYYY)')); //inserts current date into correct HTML tag
+  today.add(1,"days"); //adds one day to current date 
+  $('#nextDay').text(today.add(1,"days").format('MMM D, YYYY')); //inserts date data into correct HTML tag 
+  today.add(2,"days");
+  $('#dayTwo').text(today.add(2,"days").format('MMM D, YYYY'));
+  today.add(3,"days");
+  $('#dayThree').text(today.add(3,"days").format('MMM D, YYYY'));
+  today.add(4,"days");
+  $('#dayFour').text(today.add(4,"days").format('MMM D, YYYY'));
+  today.add(5,"days");
+  $('#dayFive').text(today.add(5,"days").format('MMM D, YYYY'));
 });
+
+
 
 function getWeather(city) { //function has been passed city value for the query URL to complete.
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
