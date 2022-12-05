@@ -1,17 +1,13 @@
-var searchBtn = document.getElementById("searchBtn")
-var searchBar = document.getElementById("searchBar")
-var result = document.getElementById("result")
+var searchBtn = document.getElementById("searchBtn");
+var searchBar = document.getElementById("searchBar");
+var result = document.getElementById("result");
 
 
-var searchHistory = document.getElementById("searchHistory")
+var searchHistory = document.getElementById("searchHistory");
 
-var currentTemp = document.getElementById("currentTemp")
-var currentWind = document.getElementById("currentWind")
-var currentHumidity = document.getElementById("currentHumidity")
-
-// var oneTemp = document.getElementById("oneTemp")
-// var oneWind = document.getElementById("oneWind")
-// var oneHumidity = document.getElementById("oneHumidity")
+var currentTemp = document.getElementById("currentTemp");
+var currentWind = document.getElementById("currentWind");
+var currentHumidity = document.getElementById("currentHumidity");
 
 var baseURL = "https://api.openweathermap.org/data/2.5/forecast?lat=41.736933&lon=-111.833826&appid=1c9903c287a36ef7e14ef5008002dd64";
 
@@ -21,16 +17,16 @@ var apiKey = "1c9903c287a36ef7e14ef5008002dd64";
 $(function () {
   var today = dayjs(); //gets current date
   $('#currentDay').text(today.format('(MMM D, YYYY)')); //inserts current date into correct HTML tag
-  today.add(1,"days"); //adds one day to current date 
-  $('#nextDay').text(today.add(1,"days").format('MMM D, YYYY')); //inserts date data into correct HTML tag 
-  today.add(2,"days");
-  $('#dayTwo').text(today.add(2,"days").format('MMM D, YYYY'));
-  today.add(3,"days");
-  $('#dayThree').text(today.add(3,"days").format('MMM D, YYYY'));
-  today.add(4,"days");
-  $('#dayFour').text(today.add(4,"days").format('MMM D, YYYY'));
-  today.add(5,"days");
-  $('#dayFive').text(today.add(5,"days").format('MMM D, YYYY'));
+  today.add(1, "days"); //adds one day to current date 
+  $('#nextDay').text(today.add(1, "days").format('MMM D, YYYY')); //inserts date data into correct HTML tag 
+  today.add(2, "days");
+  $('#dayTwo').text(today.add(2, "days").format('MMM D, YYYY'));
+  today.add(3, "days");
+  $('#dayThree').text(today.add(3, "days").format('MMM D, YYYY'));
+  today.add(4, "days");
+  $('#dayFour').text(today.add(4, "days").format('MMM D, YYYY'));
+  today.add(5, "days");
+  $('#dayFive').text(today.add(5, "days").format('MMM D, YYYY'));
 });
 
 
@@ -41,7 +37,7 @@ function getWeather(city) { //function has been passed city value for the query 
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
+    .then(function (data) { // the responde from the queryURL has provided current day weather details 
       var temp = (data.main.temp);
       var wind = (data.wind.speed);
       var humidity = (data.main.humidity);
@@ -56,17 +52,20 @@ function userInput() { //function selects the city searched and enters the city 
   var city = searchBar.value;
   getWeather(city)
   result.textContent = city;
-  localStorage.setItem("city", JSON.stringify(city));
+  localStorage.setItem("city", city);
+  // localStorage.setItem("city", JSON.stringify(city));
   var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
   fetch(forecastURL)
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
+    .then(function (data) { // the responde from the queryURL has provided the next five days's weather details.
       console.log(data);
       var forecastTemp = (data.list[5].main.temp);
       var forecastWind = (data.list[5].wind.speed);
       var forecastHumidity = (data.list[5].main.humidity);
+      // var weatherIcon = (data.list[5].weather.icon)
+      // weatherIcon[5].innerHTML = '<img src="http://openweathermap.org/img/wn/(data.weather[5].icon).png"/>';
       oneTemp.textContent = forecastTemp;
       oneWind.textContent = forecastWind;
       oneHumidity.textContent = forecastHumidity;
@@ -95,33 +94,18 @@ function userInput() { //function selects the city searched and enters the city 
       fiveWind.textContent = forecastWind4;
       fiveHumidity.textContent = forecastHumidity4;
     });
-    getHistory();
 };
 
 
-searchBtn.addEventListener("click", userInput);
+searchBtn.addEventListener("click", userInput); //event listener for search button 
 
-// iconURL = http://openweathermap.org/img/wn/
-
-function getHistory(city) {
-// var historyOne=localStorage.getItem("city");
-// searchHistory.textContent = historyOne;
-// console.log(historyOne);
-localStorage.getItem("city");
-if (city) {
-  city = JSON.parse(city);
-} else {
-  city = [];
-  console.log(city);
-}
-return city;
+function getHistory() { //gets city name to display on first button in search history section. Was attempting to get all search history to show up for all buttons. 
+  var historyOne = localStorage.getItem("city");
+  searchHistory.textContent = historyOne;
+  console.log(historyOne);
+// var hisotryOne = JSON.parse(localStorage.getItem("city")) || [];
+// searchHistory.textContent = hisotryOne;
 };
-
-
-
-
-//for loop in fetch function was not responding. 
-
-
+getHistory();
 
 
