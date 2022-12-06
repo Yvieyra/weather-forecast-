@@ -9,8 +9,6 @@ var currentTemp = document.getElementById("currentTemp");
 var currentWind = document.getElementById("currentWind");
 var currentHumidity = document.getElementById("currentHumidity");
 
-var baseURL = "https://api.openweathermap.org/data/2.5/forecast?lat=41.736933&lon=-111.833826&appid=1c9903c287a36ef7e14ef5008002dd64";
-
 var apiKey = "1c9903c287a36ef7e14ef5008002dd64";
 
 
@@ -52,8 +50,8 @@ function userInput() { //function selects the city searched and enters the city 
   var city = searchBar.value;
   getWeather(city)
   result.textContent = city;
-  localStorage.setItem("city", city);
-  // localStorage.setItem("city", JSON.stringify(city));
+  // localStorage.setItem("city", city);
+  localStorage.setItem("city", JSON.stringify(city));
   var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=imperial";
   fetch(forecastURL)
     .then(function (response) {
@@ -64,8 +62,6 @@ function userInput() { //function selects the city searched and enters the city 
       var forecastTemp = (data.list[5].main.temp);
       var forecastWind = (data.list[5].wind.speed);
       var forecastHumidity = (data.list[5].main.humidity);
-      // var weatherIcon = (data.list[5].weather.icon)
-      // weatherIcon[5].innerHTML = '<img src="http://openweathermap.org/img/wn/(data.weather[5].icon).png"/>';
       oneTemp.textContent = forecastTemp;
       oneWind.textContent = forecastWind;
       oneHumidity.textContent = forecastHumidity;
@@ -100,12 +96,14 @@ function userInput() { //function selects the city searched and enters the city 
 searchBtn.addEventListener("click", userInput); //event listener for search button 
 
 function getHistory() { //gets city name to display on first button in search history section. Was attempting to get all search history to show up for all buttons. 
-  var historyOne = localStorage.getItem("city");
+  // var historyOne = localStorage.getItem("city");
+  // searchHistory.textContent = historyOne;
+  // console.log(historyOne);
+  var historyOne = JSON.parse(localStorage.getItem("city"));
   searchHistory.textContent = historyOne;
-  console.log(historyOne);
-// var hisotryOne = JSON.parse(localStorage.getItem("city")) || [];
-// searchHistory.textContent = hisotryOne;
 };
 getHistory();
 
 
+// var weatherIcon = (data.list[5].weather.icon)
+// weatherIcon[5].innerHTML = '<img src="http://openweathermap.org/img/wn/(data.weather[5].icon).png"/>';
