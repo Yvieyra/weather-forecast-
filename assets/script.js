@@ -30,7 +30,7 @@ $(function () {
 
 
 function getWeather(city) { //function has been passed city value for the query URL to complete.
-  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
   fetch(queryURL)
     .then(function (response) {
       return response.json();
@@ -103,7 +103,3 @@ function getHistory() { //gets city name to display on first button in search hi
   searchHistory.textContent = historyOne;
 };
 getHistory();
-
-
-// var weatherIcon = (data.list[5].weather.icon)
-// weatherIcon[5].innerHTML = '<img src="http://openweathermap.org/img/wn/(data.weather[5].icon).png"/>';
